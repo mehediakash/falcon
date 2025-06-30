@@ -4,7 +4,7 @@ import Breadcrumb from '../Components/Breadcrumb'
 import productimg1 from "../assets/product/image 540.png"
 import productimg2 from "../assets/product/image 541.png"
 import { FaStar } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown,IoIosArrowUp } from "react-icons/io";
 import { GrFavorite } from "react-icons/gr";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
@@ -338,7 +338,20 @@ Chat Now </button>
           onClick={() => setShowFullDescription(!showFullDescription)}
           className="text-[#0F172A] hover:text-[#0F172A] text-base font-medium  transition duration-300 mt-3"
         >
-          {showFullDescription ? `See Less ▲` : `See More${<IoIosArrowDown />} ` }
+          {showFullDescription ? (
+    <>
+    <div className='flex items-center'>
+
+     <p className='text-[#0F172A]'>See Less </p> <IoIosArrowUp className="ml-1" />
+    </div>
+    </>
+  ) : (
+    <>
+     <div className='flex items-center'>
+     <p className='text-[#0F172A]'> See More</p> <IoIosArrowDown className="ml-1" />
+      </div>
+    </>
+  )}
         </button>
            
         </div>
