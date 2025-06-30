@@ -142,7 +142,7 @@ const Navbar = () => {
               transition={{ type: 'tween', ease: 'easeInOut' }}
               className="fixed inset-y-0 left-0 w-64 bg-white z-50 shadow-xl md:hidden"
             >
-              <div className="flex justify-between items-center p-4 border-b">
+              <div className="flex justify-between items-center p-4 border-b bg-[#0F172A]">
                 <img src={logo} alt="logo" className="h-8" />
                 <button 
                   onClick={toggleMobileMenu}
