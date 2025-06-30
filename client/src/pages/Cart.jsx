@@ -1,191 +1,168 @@
-import React, { useState, useEffect } from 'react';
-import Container from "./Container"
-import { PiShoppingCart } from "react-icons/pi";
-import { FaRegUser, FaTimes } from "react-icons/fa";
-import { IoSearchOutline } from "react-icons/io5";
-import { RxHamburgerMenu } from "react-icons/rx";
-import Store from "../assets/icons/Animation - 1751095353491 1.svg";
-import customer from "../assets/icons/customer-support.svg";
-import packagse from "../assets/icons/package.svg";
-import logo from "../assets/logo/logo.png"
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
+import { FaTrash } from "react-icons/fa";
+import Breadcrumb from "../Components/Breadcrumb";
+import { RxContainer } from "react-icons/rx";
+import Containar from "../Components/Container";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FaBangladeshiTakaSign } from "react-icons/fa6";
 
-const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+const Cart = () => {
+    const [quantity, setQuantity] = useState(1);
+  const increaseQuantity = () => {
+    setQuantity(prev => prev + 1);
+  };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(prev => prev - 1);
+    }
   };
 
   return (
     <>
-      <nav className={`bg-[#0F172A] text-white sticky top-0 z-50 ${isScrolled ? 'shadow-lg' : ''}`}>
-        <Container>
-          <div className='flex justify-between items-center py-4'>
-            <div className='w-[10%]'>
-              <picture>
-                <img src={logo} alt="logo" className="max-w-full" />
-              </picture>
-            </div>
+    <div className="bg-[#f5f9fc]">
+
+    
+    <Containar>
+    <Breadcrumb/>
+    
+    <div className=" min-h-screen ">
+      <div className=" mx-auto grid md:grid-cols-3 gap-6">
+        {/* Left side: Cart Items */}
+        <div className="md:col-span-2 bg-white rounded-lg shadow-sm ">
             
-            {/* Desktop Search - Hidden on mobile */}
-            <div className='hidden md:flex w-[60%] relative bg-white text-[#475569] rounded-sm'>
-              <input 
-                placeholder='Search for anything....' 
-                className='w-full p-3' 
-                type="text" 
+            <div className="flex items-center mx-5 py-[26px] justify-between border-b border-[#D9D9D9]">
+            <h2 className="text-2xl font-semibold text-[#0F172A] ">My Cart (3)</h2>
+              <div className="flex items-center gap-6 text-sm text-gray-500">
+  <label className="flex items-center gap-2 cursor-pointer text-[#475569] text-base">
+    <input
+      type="checkbox"
+      className="w-5 h-5 accent-[#00B795] cursor-pointer"
+    />
+    Select All
+  </label>
+  <button className="text-[#475569] text-base">Clear All</button>
+</div>
+            </div>
+
+          <div className="flex justify-between items-center mb-4 mt-[21px] ml-5 bg-[#F1F5F9]  py-2">
+            <div className="flex items-center gap-2 px-3 ">
+              <input type="checkbox" />
+              <span className="font-medium text-[#334155] text-sm">BD FASHION HOUSE</span>
+              <MdKeyboardArrowRight size={16} className="text-[#64748B]"/>
+            </div>
+        
+          </div>
+
+          {/* Product Items */}
+          {[1, 2].map((_, i) => (
+            <div key={i} className="flex items-start gap-4 py-4 px-5 ">
+              <input type="checkbox" className="mt-2" />
+              <img
+                src="https://i.imgur.com/N7rlQYt.png"
+                alt="Product"
+                className="w-[100px] h-[100px] object-cover rounded-[5px]"
               />
-              <div className='bg-[#00B795] text-white flex items-center justify-center absolute p-2.5 top-0 right-0 rounded-r-sm'>
-                <IoSearchOutline size={28} />
-              </div>
-            </div>
-            
-            <div className='flex items-center gap-x-5 md:gap-x-[20px] md:w-[10%]'>
-              {/* Mobile Menu Button - Hidden on desktop */}
-              <button 
-                className="md:hidden text-white focus:outline-none"
-                onClick={toggleMobileMenu}
-              >
-                <RxHamburgerMenu size={24} />
-              </button>
-              
-              <div className='hidden md:flex flex-row-reverse gap-x-[20px] items-center'>
-                <FaRegUser size={22} />
-                <div className='relative'>
-                  <PiShoppingCart size={28} />
-                  <p className='absolute bg-[#EF4444] w-[20px] h-[20px] p-[2px] rounded-full text-xs text-center top-[-7px] right-[-8px]'>12</p>
-                </div>
-              </div>
-              
-              {/* Mobile Icons - Hidden on desktop */}
-              <div className='flex md:hidden gap-x-4'>
-                <FaRegUser size={20} />
-                <div className='relative'>
-                  <PiShoppingCart size={22} />
-                  <p className='absolute bg-[#EF4444] w-[18px] h-[18px] p-[2px] rounded-full text-[10px] text-center top-[-6px] right-[-6px]'>12</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </nav>
-
-      {/* Mobile Search - Hidden on desktop */}
-      <div className='md:hidden px-4 py-2 bg-[#0F172A]'>
-        <div className='flex w-full relative bg-white text-[#475569] rounded-sm'>
-          <input 
-            placeholder='Search for anything....' 
-            className='w-full p-2 text-sm' 
-            type="text" 
-          />
-          <div className='bg-[#00B795] text-white flex items-center justify-center absolute p-2 top-0 right-0 rounded-r-sm'>
-            <IoSearchOutline size={20} />
-          </div>
-        </div>
-      </div>
-
-      {/* category section */}
-      <div className='bg-white py-2 hidden md:block'>
-        <Container>
-          <div className='flex items-center justify-between'>
-            <button className='w-[10%] text-[#0F172A] text-base font-medium flex items-center gap-x-2 mr-[64px]'>
-              <RxHamburgerMenu className='text-[#00A788]' size={24}/>
-              Categories
-            </button>
-            <div className='w-[50%]'>
-              <ul className='flex items-center text-sm gap-x-8'>
-                <li>Electronics</li>
-                <li>Home Appliances</li>
-                <li>Mother & Baby</li>
-                <li>Automotive</li>
-                <li>Automotive</li>
-              </ul>
-            </div>
-            <div className='w-[30%]'>
-              <ul className='flex flex-row-reverse text-xs font-medium gap-x-6 text-[#475569]'>
-                <li className='flex items-center gap-x-2'><img src={Store} alt="customer" />SELL WITH US</li>
-                <li className='flex items-center gap-x-2'><img src={customer} alt="customer" />HELP CENTER</li>
-                <li className='flex items-center gap-x-2'><img src={packagse} alt="packagse" />TRACK ORDER</li>
-              </ul>
-            </div>
-          </div>
-        </Container>
-      </div>
-
-      {/* Mobile Sidebar Navigation */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            {/* Overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-50 md:hidden"
-              onClick={toggleMobileMenu}
-            />
-            
-            {/* Sidebar */}
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'tween', ease: 'easeInOut' }}
-              className="fixed inset-y-0 left-0 w-64 bg-white z-50 shadow-xl md:hidden"
-            >
-              <div className="flex justify-between items-center p-4 border-b">
-                <img src={logo} alt="logo" className="h-8" />
+              <div className="flex-1">
+                <h4 className="font-medium text-base text-[#0F172A]">
+                  Bestway Brand Air Inflatable 5 In 1 semi Double Sofa
+                </h4>
+                <p className=" text-[#475569] text-base mt-2.5 mb-[11px]">Color: red; Size: M</p>
+                <div className="flex items-center  gap-6">
+                 
+           
+              <div className="flex items-center  relative z-[3] ">
+                <div className='w-[161px] bg-transparent z-[-1] absolute top-0 left-[-5px] border border-[#E2E8F0] h-full rounded-full'></div>
                 <button 
-                  onClick={toggleMobileMenu}
-                  className="text-gray-500 hover:text-gray-700"
+                  onClick={decreaseQuantity}
+                  className="w-[33px] h-[33px] rounded-full flex text-base font-bold items-center justify-center bg-[#F1F5F9]    text-[#64748B] hover:bg-gray-200"
                 >
-                  <FaTimes size={20} />
+                  -
                 </button>
-              </div>
-              
-              <div className="p-4">
-                <button className='w-full text-[#0F172A] text-base font-medium flex items-center gap-x-2 py-3'>
-                  <RxHamburgerMenu className='text-[#00A788]' size={24}/>
-                  Categories
+                <div className="  w-[86px] border-[#E2E8F0] h-10 flex items-center justify-center  text-base font-medium text-[#252B42]">
+                  {quantity}
+                </div>
+                <button 
+                  onClick={increaseQuantity}
+                  className="w-[33px] h-[33px] rounded-full text-base flex  font-bold items-center justify-center bg-[#F1F5F9]  text-[#64748B] hover:bg-gray-200"
+                >
+                  +
                 </button>
-                
-                <ul className='space-y-4 mt-6'>
-                  <li className='text-gray-700 font-medium'>Electronics</li>
-                  <li className='text-gray-700 font-medium'>Home Appliances</li>
-                  <li className='text-gray-700 font-medium'>Mother & Baby</li>
-                  <li className='text-gray-700 font-medium'>Automotive</li>
-                </ul>
-                
-                <ul className='mt-8 space-y-4 text-sm font-medium text-[#475569]'>
-                  <li className='flex items-center gap-x-2'>
-                    <img src={Store} alt="customer" className="w-5" />
-                    SELL WITH US
-                  </li>
-                  <li className='flex items-center gap-x-2'>
-                    <img src={customer} alt="customer" className="w-5" />
-                    HELP CENTER
-                  </li>
-                  <li className='flex items-center gap-x-2'>
-                    <img src={packagse} alt="packagse" className="w-5" />
-                    TRACK ORDER
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
-  )
-}
+             
+            </div>
+                  <button className="text-[#94A3B8] text-base">
+                    <RiDeleteBin6Line />
 
-export default Navbar
+                  </button>
+                </div>
+              </div>
+              <div className="text-right flex items-center gap-x-2">
+
+                <p className="text-[#0F172A] font-bold text-[20px] flex items-center"><FaBangladeshiTakaSign /> 1139
+                </p>
+                <p className="text-base line-through text-[#475569]  flex items-center"><FaBangladeshiTakaSign /> 1539
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Right side: Order Summary */}
+        <div className="bg-white relative max-h-[331px] rounded-lg shadow-sm py-[13px] px-6">
+          <h3 className="text-[24px] font-medium text-[#475569] mb-4">Order summary</h3>
+          <div className="flex justify-between text-base font-medium mb-3">
+            <span className="text-[#475569]">Price (3 items)</span>
+            <span className="text-[#0F172A] font-normal">৳00</span>
+          </div>
+          <div className="flex justify-between text-sm mb-3">
+            <span className="text-gray-600">Shipping fee</span>
+            <a href="#" className="text-[#3B82F6] hover:underline text-sm">
+              To be added
+            </a>
+          </div>
+
+          <div className="flex items-center mb-4 border-b border-[#CBD5E1] pb-5 border-dotted">
+            <input
+              type="text"
+              placeholder="Store / Falcon coupon"
+              className="border border-gray-300 rounded-l px-4 py-2 w-full"
+            />
+            <button className="bg-[#00B795] border border-[#00B795] text-white px-4 py-2 rounded-r">
+              Apply
+            </button>
+          </div>
+
+          
+          <div className="flex justify-between   mb-4">
+            <span className="text-[#334155] font-medium text-[18px]">Sub Total</span>
+            <span className="text-[#171717] text-[20px] font-semibold">৳00</span>
+          </div>
+          <button className="w-full bg-[#00B795] hover:bg-[#00B795] text-white font-semibold py-3 rounded">
+            Proceed to Checkout
+          </button>
+
+             <div className="flex absolute bottom-[-57px] items-start mt-4 gap-2 text-sm text-gray-600">
+            <input type="checkbox" className="mt-1" />
+            <p>
+              I have read and agree to the <a href="#" className="text-blue-500 underline">Terms and Conditions</a>,
+              <a href="#" className="text-blue-500 underline"> Privacy Policy</a> and
+              <a href="#" className="text-blue-500 underline"> Refund and Return Policy</a>
+            </p>
+          </div>
+
+          
+   
+   
+        </div>
+         
+        
+      </div>
+    </div>
+     </Containar>
+     </div>
+    </>
+  );
+};
+
+export default Cart;

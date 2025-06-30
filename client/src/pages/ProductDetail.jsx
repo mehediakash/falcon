@@ -361,8 +361,8 @@ Chat Now </button>
 
       {/* Specification */}
       <div className='bg-white rounded-sm py-[22px] px-[27px]'>
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Specification</h2>
-        <h3 className="text-lg font-medium text-gray-700 mb-3">Sharp FP-J30E-B Air Purifier</h3>
+        <h2 className="text-2xl font-semibold text-[#252B42] mb-4">Specification</h2>
+        <h3 className="text-lg font-medium text-[#252B42] mb-3">Sharp FP-J30E-B Air Purifier</h3>
 
         <div className="relative">
           <ul
@@ -371,8 +371,8 @@ Chat Now </button>
             } space-y-2`}
           >
             {specificationItems.map((item, index) => (
-              <li key={index} className="text-gray-700 flex items-start">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-2"></span>
+              <li key={index} className="text-[#475569] flex items-start">
+                <span className="inline-block w-[4px] h-[4px] rounded-full bg-[#475569] mt-2 mr-2"></span>
                 {item}
               </li>
             ))}
@@ -382,11 +382,25 @@ Chat Now </button>
           )}
         </div>
         <div className='text-center'>
-        <button
+    
+         <button
           onClick={() => setShowFullSpecification(!showFullSpecification)}
-         className="text-[#0F172A] hover:text-[#0F172A] text-base font-medium  transition duration-300 mt-3"
+          className="text-[#0F172A] hover:text-[#0F172A] text-base font-medium  transition duration-300 mt-3"
         >
-          {showFullSpecification ? 'Show Less ▲' : 'Show More ▼'}
+          {showFullSpecification ? (
+    <>
+    <div className='flex items-center'>
+
+     <p className='text-[#0F172A]'>See Less </p> <IoIosArrowUp className="ml-1" />
+    </div>
+    </>
+  ) : (
+    <>
+     <div className='flex items-center'>
+     <p className='text-[#0F172A]'> See More</p> <IoIosArrowDown className="ml-1" />
+      </div>
+    </>
+  )}
         </button>
         </div>
       </div>
