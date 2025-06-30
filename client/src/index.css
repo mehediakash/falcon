@@ -3,3 +3,7 @@
 @theme {
   --font-Onest: "Onest", sans-serif; 
 }
+
+*{
+  font-family:"Onest", sans-serif
+}
