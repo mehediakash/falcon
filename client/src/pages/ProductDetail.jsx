@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Container from "../Components/Container"
 import Breadcrumb from '../Components/Breadcrumb'
 import productimg1 from "../assets/product/image 540.png"
@@ -18,6 +18,7 @@ import { PiPackage } from "react-icons/pi";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ProductDetail = () => {
     const [selectedColor, setSelectedColor] = useState('Navy Blue');
@@ -90,6 +91,31 @@ const ProductDetail = () => {
       setQuantity(prev => prev - 1);
     }
   };
+
+
+
+  const descRef = useRef(null);
+  const specRef = useRef(null);
+  const [descHeight, setDescHeight] = useState(0);
+  const [specHeight, setSpecHeight] = useState(0);
+
+  useEffect(() => {
+    if (descRef.current) {
+      setDescHeight(descRef.current.scrollHeight);
+    }
+    if (specRef.current) {
+      setSpecHeight(specRef.current.scrollHeight);
+    }
+  }, []);
+  const descriptionText = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi minima voluptas eos ipsa corrupti explicabo? Sed nobis eum facilis recusandae sit nostrum itaque non odit, quas quae voluptas, corrupti omnis explicabo dolorum ab temporibus voluptatum. Eaque suscipit nulla rem commodi odio enim reprehenderit. Qui odio voluptates esse deleniti molestias soluta dolor cumque ipsa officiis nostrum id saepe eius voluptas repudiandae nam quae corporis exercitationem ad hic dolorum iusto, omnis quam perspiciatis minima! Aliquam, vitae, officiis cupiditate doloribus animi beatae at enim laborum adipisci dolore commodi perspiciatis iure deleniti nihil nam voluptate totam deserunt modi? Aliquid deserunt quae modi non ab, veritatis mollitia quo, ut iusto cupiditate excepturi quidem dolores consequatur velit molestiae saepe itaque minima, hic adipisci voluptate quis! Consectetur consequuntur laboriosam nihil. Animi nobis asperiores itaque iste molestiae deleniti minus maiores ullam, tempora ex suscipit excepturi similique a blanditiis consequuntur adipisci quia doloremque hic sapiente magni dolorem nam, nemo minima voluptate. Id magni nisi labore et facilis non tempore ratione, officia eos ex minus quibusdam recusandae eius aspernatur tempora laborum? Praesentium quo perferendis deleniti facilis amet saepe itaque. Soluta inventore magni aperiam voluptatum, voluptatibus eos. Sapiente harum perspiciatis dolorum assumenda consectetur provident quod voluptatibus eos vel nulla nihil repellendus unde beatae, amet officiis quae eius. Maiores facere rem veniam fugiat suscipit reiciendis voluptatum cumque odit a, dolore ullam repellat possimus voluptatibus rerum deleniti ea fuga minus ipsum tenetur commodi sint explicabo. Maxime dolorum enim aperiam qui. Porro consequatur, itaque, sint voluptates, delectus odio molestias fugit ratione laboriosam explicabo amet nulla maxime quas quia? Dolorum minima explicabo blanditiis possimus dolores fugit? Sit quas inventore in. Non rerum accusantium sit maiores commodi aut in, mollitia provident aliquam impedit praesentium animi veritatis, rem atque eius asperiores ex! Eveniet recusandae eum placeat fugit. Nemo cum ad officia vel assumenda accusantium velit nisi molestiae impedit explicabo dolorem obcaecati quidem, amet quo fugiat. Rem, et neque facere officiis temporibus illum nesciunt illo corporis ut. Facere, eveniet natus? Autem, praesentium deserunt culpa exercitationem quisquam maxime odio magnam doloremque tempora ipsam eveniet. Sint quidem nihil delectus totam dolor rerum autem quos eos, quae perferendis blanditiis eum, odit, doloremque earum. Neque, reprehenderit aut? Accusantium nobis omnis ex. Suscipit possimus obcaecati quod laboriosam. Vel mollitia libero voluptatibus ipsam rem. Fugiat corporis non totam nemo! Laboriosam voluptates nihil nostrum, nobis nulla, veritatis, ratione repudiandae assumenda repellendus doloremque quaerat consectetur totam sed distinctio incidunt exercitationem asperiores at autem eum provident excepturi! Reprehenderit fugit beatae incidunt aliquam voluptatibus, culpa dignissimos optio sint non, itaque modi reiciendis aliquid ratione iusto excepturi repudiandae necessitatibus. Delectus, quas modi? Optio accusantium quia, aspernatur necessitatibus ipsa nihil praesentium minus numquam fugiat excepturi, quas provident adipisci vero deleniti veniam laboriosam! Quos harum, aut libero possimus consequuntur ipsum deleniti dolore necessitatibus repudiandae numquam similique ullam laboriosam aliquid eum molestiae, sapiente minima nostrum eligendi voluptatum rem eaque. Expedita ea est doloremque facilis aspernatur quae aliquid cupiditate unde dicta, consequatur recusandae eveniet quidem dolorum culpa ipsa. Velit nemo aut nisi dolore recusandae voluptate nostrum cumque odit veritatis consequuntur. Repellat, adipisci consequuntur!`;
+
+  const specificationItems = [
+    "GMP Cosmetic Good Manufacturing Practice",
+    "Cruelty Free",
+    "No Animal Testing",
+    "Zempia Global Standard",
+    "Comply with Global Standard"
+  ];
 
   return (
     <div className='bg-[#F1F5F9]'>
@@ -286,6 +312,73 @@ Chat Now </button>
           </div>
         </div>
         </Container>
+<div className='bg-[#F1F5F9] md:pb-[105px] pb-[50px] pt-[15px]'>
+  <Container>
+
+
+
+      {/* Description */}
+      <div className="mb-3.5   rounded-sm bg-white py-[22px] px-[27px] ">
+        <h2 className="text-2xl font-semibold text-[#252B42] mb-4">Description</h2>
+        <div className="relative">
+          <p
+            className={`text-gray-700  text-base leading-[28px] whitespace-pre-line transition-all duration-500 ease-in-out overflow-hidden ${
+              showFullDescription ? 'max-h-[1000px]' : 'max-h-[255px]'
+            }`}
+          >
+            {descriptionText}
+          </p>
+          {!showFullDescription && (
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+          )}
+        </div>
+        <div className='text-center'>
+       
+        <button
+          onClick={() => setShowFullDescription(!showFullDescription)}
+          className="text-[#0F172A] hover:text-[#0F172A] text-base font-medium  transition duration-300 mt-3"
+        >
+          {showFullDescription ? `See Less ▲` : `See More${<IoIosArrowDown />} ` }
+        </button>
+           
+        </div>
+      </div>
+
+      
+
+      {/* Specification */}
+      <div className='bg-white rounded-sm py-[22px] px-[27px]'>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Specification</h2>
+        <h3 className="text-lg font-medium text-gray-700 mb-3">Sharp FP-J30E-B Air Purifier</h3>
+
+        <div className="relative">
+          <ul
+            className={`transition-all duration-500 ease-in-out overflow-hidden ${
+              showFullSpecification ? 'max-h-[1000px]' : 'max-h-[128px]'
+            } space-y-2`}
+          >
+            {specificationItems.map((item, index) => (
+              <li key={index} className="text-gray-700 flex items-start">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-2"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          {!showFullSpecification && (
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+          )}
+        </div>
+        <div className='text-center'>
+        <button
+          onClick={() => setShowFullSpecification(!showFullSpecification)}
+         className="text-[#0F172A] hover:text-[#0F172A] text-base font-medium  transition duration-300 mt-3"
+        >
+          {showFullSpecification ? 'Show Less ▲' : 'Show More ▼'}
+        </button>
+        </div>
+      </div>
+      </Container>
+    </div>
       </div>
 
     </div>
