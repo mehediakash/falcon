@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`bg-[#0F172A] text-white sticky top-0 z-50 md:px-0 px-5 ${isScrolled ? 'shadow-lg' : ''}`}>
+      <nav className={`bg-[#0F172A] text-white sticky top-0 z-50 ${isScrolled ? 'shadow-lg' : ''}`}>
         <Container>
           <div className='flex justify-between items-center py-4'>
             <div className='md:w-[10%] w-full'>

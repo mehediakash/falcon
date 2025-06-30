@@ -11,6 +11,12 @@ import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import promobg from "../assets/product/Group 1010108454.png"
 import color1 from "../assets/product/Frame 48098691.png"
 import color2 from "../assets/product/Frame 48098693.png"
+import agentlogo from "../assets/icons/Frame 1618873879.png"
+import packagse from "../assets/icons/package.svg"; 
+import packagseM from "../assets/product/packagemoving.png"; 
+import { PiPackage } from "react-icons/pi";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+
 
 
 const ProductDetail = () => {
@@ -90,16 +96,16 @@ const ProductDetail = () => {
     <Container>
       <Breadcrumb></Breadcrumb>
     </Container>
-      <div className="bg-white ">
+      <div className="bg-white md:px-0 px-5 ">
             <Container>
-        <div className="flex flex-col md:flex-row gap-8 py-6 ">
+        <div className="flex flex-col md:flex-row  gap-8 py-6 ">
           {/* Product Images */}
           <div className="w-full md:w-[30%]">
-            <div className="bg-white rounded-lg  mb-4">
+            <div className="bg-white rounded-lg mx  mb-4">
               <img 
                 src={productimg1} 
                 alt={product.name} 
-                className="w-[380px] h-auto object-contain rounded-md"
+                className="md:w-[380px] w-full h-auto object-contain rounded-md"
                
               />
                <div className="flex space-x-2 overflow-x-auto mt-4 ">
@@ -123,7 +129,7 @@ const ProductDetail = () => {
 
           {/* Product Info */}
           <div className="w-full md:w-[40%]">
-            <h1 className="text-2xl font-semibold text-[#0F172A]  ">{product.name}</h1>
+            <h1 className="text-2xl font-medium text-[#0F172A]  ">{product.name}</h1>
             
             <div className="flex text-base items-center mt-2 ">
               <div className='flex items-center justify-between w-full'>
@@ -217,13 +223,66 @@ const ProductDetail = () => {
             {/* Add to Cart */}
             <button 
               onClick={handleAddToCart}
-              className="w-full md:w-[412px] bg-[#00A788] hover:bg-[rgb(7,126,104)] text-white py-3 px-4 rounded-md font-medium transition duration-150 ease-in-out"
+              className="w-full md:w-[412px] bg-[#00A788] hover:bg-[rgb(7,126,104)] text-white py-3 px-4 rounded-sm font-medium transition duration-150 ease-in-out"
             >
               Add to Cart
             </button>
           </div>
           <div className=' w-full md:w-[25%]'>
-            Delivery Options
+            <div className='py-3 px-4 border border-[#E2E8F0] rounded-xl'>
+
+          
+           <h2 className='text-[18px] font-medium text-[#475569]'>Delivery Options </h2> 
+           <div className='flex gap-x-2 mt-3'>
+            <PiPackage size={24}  className='text-[#00B795]'/>
+
+            <div>
+              <p className='text-base font-medium text-[#334155]'>
+              Regular 
+              </p>
+               <p className='text-[#475569] mt-1'>Delivery within 2-3 days</p>
+             </div>
+           </div>
+           <div className='flex gap-x-2 mt-4'>
+            <picture>
+              <img src={packagseM} alt="packagseM" />
+            </picture>
+            <div>
+              <p className='text-base font-medium text-[#CBD5E1]'>
+              Express 
+              </p>
+               <p className='text-[#CBD5E1] mt-1'>Delivery within 24 Hours.</p>
+             </div>
+           </div>
+             </div>
+            <div className='py-3 px-4 border border-[#E2E8F0] rounded-xl mt-4'>
+
+          
+           <h2 className='text-xs font-medium text-[#475569] mb-2'>Sold by </h2> 
+           <picture >
+            <img src={agentlogo} alt="agentlogo" />
+           </picture>
+           <div className='flex gap-x-3 mt-4 pb-3 border-[#E2E8F0]  border-b'>
+          
+          <button className='bg-[#E6F8F4] cursor-pointer text-sm font-medium text-[#00A788] flex items-center gap-x-2 px-5.5 py-1.5 rounded-sm'><IoChatbubbleEllipsesOutline size={16} />
+Chat Now </button>
+          <button className='bg-[#F1F5F9] cursor-pointer text-sm font-medium text-[#475569] flex items-center gap-x-2 px-5.5 py-1.5 rounded-sm'>View Shop  </button>
+           </div>
+           <div className='flex items-center gap-x-5.5'>
+           <div >
+            <h2 className='text-xs font-medium text-[#475569] mb-3 mt-4'>Ship on Time</h2>
+            <p className='text-[28px] text-[#475569]'>100%</p>
+           </div>
+           <div>
+            <h2 className='text-xs font-medium text-[#475569] mb-3 mt-4'>Chat Response</h2>
+            <p className='text-[28px] text-[#475569]'>90%</p>
+           </div>
+           <div>
+            <h2 className='text-xs font-medium text-[#475569] mb-3 mt-4'>Shop Rating</h2>
+            <p className='text-[28px] text-[#475569]'>99.8%</p>
+           </div>
+            </div>
+             </div>
           </div>
         </div>
         </Container>
