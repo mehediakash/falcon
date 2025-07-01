@@ -318,7 +318,7 @@ Chat Now </button>
 
 
       {/* Description */}
-      <div className="mb-3.5   rounded-sm bg-white py-[22px] px-[27px] ">
+      <div className="mb-3.5   rounded-sm bg-white py-[22px] px-[27px]  max-w-[995px]">
         <h2 className="text-2xl font-semibold text-[#252B42] mb-4">Description</h2>
         <div className="relative">
           <p
@@ -360,7 +360,7 @@ Chat Now </button>
       
 
       {/* Specification */}
-      <div className='bg-white rounded-sm py-[22px] px-[27px]'>
+      <div className='bg-white rounded-sm py-[22px] px-[27px] max-w-[995px]'>
         <h2 className="text-2xl font-semibold text-[#252B42] mb-4">Specification</h2>
         <h3 className="text-lg font-medium text-[#252B42] mb-3">Sharp FP-J30E-B Air Purifier</h3>
 

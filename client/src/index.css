@@ -9,3 +9,26 @@
 *{
   font-family:"Onest", sans-serif
 }
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #64748B;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.custom-checkbox.checked {
+  background-color: #00B795;
+   border: 1px solid #00B795;
+}
+
+.checkmark {
+  width: 14px;
+  height: 14px;
+  color: white;
+}

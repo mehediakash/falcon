@@ -6,6 +6,8 @@ import Containar from "../Components/Container";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import CustomCheckbox from "../Components/CustomCheckbox";
+import sotor from "../assets/icons/store-01.png"
 
 const Cart = () => {
     const [quantity, setQuantity] = useState(1);
@@ -27,29 +29,30 @@ const Cart = () => {
     <Containar>
     <Breadcrumb/>
     
-    <div className=" min-h-screen ">
+    <div className=" min-h-screen pb-52 md:pb-0">
       <div className=" mx-auto grid md:grid-cols-3 gap-6">
         {/* Left side: Cart Items */}
         <div className="md:col-span-2 bg-white rounded-lg shadow-sm ">
             
-            <div className="flex items-center mx-5 py-[26px] justify-between border-b border-[#D9D9D9]">
+            <div className="flex items-center flex-col md:flex-row mx-5 py-[26px] justify-between border-b border-[#D9D9D9]">
             <h2 className="text-2xl font-semibold text-[#0F172A] ">My Cart (3)</h2>
-              <div className="flex items-center gap-6 text-sm text-gray-500">
-  <label className="flex items-center gap-2 cursor-pointer text-[#475569] text-base">
-    <input
-      type="checkbox"
-      className="w-5 h-5 accent-[#00B795] cursor-pointer"
-    />
-    Select All
-  </label>
-  <button className="text-[#475569] text-base">Clear All</button>
-</div>
+              <div className="flex items-center gap-6 text-sm text-gray-500 mt-5 md:mt-0">
+              <label className="flex items-center gap-2  cursor-pointer text-[#475569] text-base">
+                <CustomCheckbox/>
+                Select All
+              </label>
+              <button button className="text-[#475569] text-base">Clear All</button>
+        </div>
             </div>
 
           <div className="flex justify-between items-center mb-4 mt-[21px] ml-5 bg-[#F1F5F9]  py-2">
             <div className="flex items-center gap-2 px-3 ">
-              <input type="checkbox" />
-              <span className="font-medium text-[#334155] text-sm">BD FASHION HOUSE</span>
+            <CustomCheckbox/>
+              <span className="font-medium flex items-center gap-x-2 text-[#334155] text-sm">
+                <picture>
+                  <img src={sotor} alt="store" />
+                </picture>
+                BD FASHION HOUSE</span>
               <MdKeyboardArrowRight size={16} className="text-[#64748B]"/>
             </div>
         
@@ -57,22 +60,29 @@ const Cart = () => {
 
           {/* Product Items */}
           {[1, 2].map((_, i) => (
-            <div key={i} className="flex items-start gap-4 py-4 px-5 ">
-              <input type="checkbox" className="mt-2" />
+            <div key={i} className="flex md:flex-row md:flex-nowrap md:justify-start justify-center flex-wrap items-start gap-4 py-4 px-[32px] ">
+             <CustomCheckbox className={"!w-[16px] !h-[16px]"}/>
               <img
                 src="https://i.imgur.com/N7rlQYt.png"
                 alt="Product"
-                className="w-[100px] h-[100px] object-cover rounded-[5px]"
+                className="md:w-[100px] w-[200px] h-[200px] md:h-[100px] object-cover rounded-[5px]"
               />
               <div className="flex-1">
                 <h4 className="font-medium text-base text-[#0F172A]">
                   Bestway Brand Air Inflatable 5 In 1 semi Double Sofa
                 </h4>
-                <p className=" text-[#475569] text-base mt-2.5 mb-[11px]">Color: red; Size: M</p>
-                <div className="flex items-center  gap-6">
+                <p className=" text-[#475569] text-base md:text-start text-center mt-2.5 md:mb-[11px]">Color: red; Size: M</p>
+                  <div className="text-right justify-center  flex md:hidden items-center gap-x-2">
+
+                <p className="text-[#0F172A] font-bold text-[20px] flex items-center"><FaBangladeshiTakaSign /> 1139
+                </p>
+                <p className="text-base line-through text-[#475569]  flex items-center"><FaBangladeshiTakaSign /> 1539
+                </p>
+              </div>
+                <div className="flex justify-center md:justify-start items-center  gap-6">
                  
            
-              <div className="flex items-center  relative z-[3] ">
+              <div className="flex items-center   relative z-[3] ">
                 <div className='w-[161px] bg-transparent z-[-1] absolute top-0 left-[-5px] border border-[#E2E8F0] h-full rounded-full'></div>
                 <button 
                   onClick={decreaseQuantity}
@@ -97,7 +107,7 @@ const Cart = () => {
                   </button>
                 </div>
               </div>
-              <div className="text-right flex items-center gap-x-2">
+              <div className="text-right  hidden md:flex items-center gap-x-2">
 
                 <p className="text-[#0F172A] font-bold text-[20px] flex items-center"><FaBangladeshiTakaSign /> 1139
                 </p>
@@ -134,7 +144,7 @@ const Cart = () => {
           </div>
 
           
-          <div className="flex justify-between   mb-4">
+          <div className="flex justify-between   mb-4  ">
             <span className="text-[#334155] font-medium text-[18px]">Sub Total</span>
             <span className="text-[#171717] text-[20px] font-semibold">৳00</span>
           </div>
@@ -142,8 +152,11 @@ const Cart = () => {
             Proceed to Checkout
           </button>
 
-             <div className="flex absolute bottom-[-57px] items-start mt-4 gap-2 text-sm text-gray-600">
-            <input type="checkbox" className="mt-1" />
+             <div className="flex absolute md:bottom-[-57px] bottom-[-80px]  items-start mt-4 gap-2 text-sm text-gray-600 ">
+              <div>
+
+              <CustomCheckbox /> 
+              </div>
             <p>
               I have read and agree to the <a href="#" className="text-blue-500 underline">Terms and Conditions</a>,
               <a href="#" className="text-blue-500 underline"> Privacy Policy</a> and
