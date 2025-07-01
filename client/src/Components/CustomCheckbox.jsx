@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-
-const CustomCheckbox = ({className}) => {
-  const [checked, setChecked] = useState(false);
-
+const CustomCheckbox = ({ className, checked, onChange }) => {
   return (
     <div
       className={`custom-checkbox ${className} ${checked ? 'checked' : ''}`}
-      onClick={() => setChecked(!checked)}
+      onClick={onChange}
     >
       {checked && (
         <svg

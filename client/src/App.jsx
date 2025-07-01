@@ -5,7 +5,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import ProductDetail from './pages/ProductDetail';
+import SingleProduct from './pages/SingleProduct';
 import RootLayout from './Components/RootLayout';
 import Cart from './pages/Cart';
 
@@ -13,7 +13,7 @@ import Cart from './pages/Cart';
 const router = createBrowserRouter(
   createRoutesFromElements(
         <Route path="/" element={<RootLayout />}>
-           <Route index element={<ProductDetail />}/>
+           <Route index element={<SingleProduct />}/>
            <Route path='cart' element={<Cart />}/>
         </Route>
   ))
