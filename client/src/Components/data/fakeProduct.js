@@ -1,28 +1,143 @@
 export const fakeProduct = {
-    name: "Men's Stylish & Fashionable Trendy Good Looking Long Sleeve Casual Shirt",
-    rating: 4.7,
-    reviews: 2254,
-    price: 1139.33,
-    originalPrice: 1500,
-    promotion: "Min. spans: $450",
-    colors: ['Navy Blue', "green", 'White', 'Gray'],
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    description: "Just as a book is judged by its cover, the first thing you notice when you pick up a modern smartphone is the display. Nothing surprising, because advanced technologies allow you to practically level the display frames and cutouts for the front camera and speaker, leaving no room for bold design solutions. And how good that in such realities Apple everything is fine with displays. Advanced technologies allow you to practically level the display frames and cutouts for the front camera and speaker, leaving no room for bold design solutions. And how good that in such realities Apple everything.",
-    specifications: [
-      "GMP Cosmetic Good Manufacturing Practice",
-      "Cruelty Free",
-      "No Animal Testing",
-      "Zempla Global Standard",
-      "Comply with Global Standard"
-    ],
-    images: [
-      "productimg2",
-      "productimg2",
-      "productimg2",
-      "productimg2",
-      "https://via.placeholder.com/600x600/1e3a8a/ffffff?text=Detail"
+  name: "Men's Stylish & Fashionable Trendy Good Looking Long Sleeve Casual Shirt",
+  rating: 4.7,
+  reviews: 2254,
+  image: {
+    "1": {
+      url: "https://server.tuffersbd.com/uploads/products/products-1747322558307-507180200.jpg"
+    }
+  },
+  variations: [
+    {
+      id: "fake-var-1",
+      discount_price: 1139.33,
+      image: "https://server.tuffersbd.com/uploads/products/products-1747322558308-816810684.jpg",
+      variation_attributes: {
+        color: "Navy Blue",
+        size: "M"
+      }
+    },
+    {
+      id: "fake-var-2",
+      discount_price: 1250.00,
+      image: "https://server.tuffersbd.com/uploads/products/products-1747322558309-156127508.jpg",
+      variation_attributes: {
+        color: "Gray",
+        size: "L"
+      }
+    },
+    {
+      id: "fake-var-3",
+      discount_price: 1250.00,
+      image: "https://server.tuffersbd.com/uploads/products/products-1747322558309-593637869.jpg",
+      variation_attributes: {
+        color: "Gray",
+        size: "L"
+      }
+    }
+    ,
+    {
+      id: "fake-var-4",
+      discount_price: 1250.00,
+      image: "https://server.tuffersbd.com/uploads/products/products-1747396980784-702654318.jpg",
+      variation_attributes: {
+        color: "Gray",
+        size: "L"
+      }
+    },
+    {
+      id: "fake-var-5",
+      discount_price: 1250.00,
+      image: "https://server.tuffersbd.com/uploads/products/products-1747396980785-151358076.jpg",
+      variation_attributes: {
+        color: "Gray",
+        size: "L"
+      }
+    }
+  ],
+  product_detail: {
+    discount_price: 1139.33,
+    variation_attributes: {
+      color: "Navy Blue",
+      size: "M"
+    }
+  },
+  colors: ["Navy Blue", "Green", "White", "Gray"],
+  sizes: ["XS", "S", "M", "L", "XL"],
+  description: `Just as a book is judged by its cover, the first thing you notice when you pick up a modern smartphone is the display. Nothing surprising, because advanced technologies allow you to practically level the display frames and cutouts for the front camera and speaker, leaving no room for bold design solutions. And how good that in such realities Apple everything is fine with displays.`,
+  specifications: [
+    "GMP Cosmetic Good Manufacturing Practice",
+    "Cruelty Free",
+    "No Animal Testing",
+    "Zempla Global Standard",
+    "Comply with Global Standard"
+  ]
+};
+
+export  const fakeCategories = [
+  {
+    id: 1,
+    name: "Electronics",
+    subcategories: [
+      {
+        id: 11,
+        name: "Mobile Phones",
+        subchilds: [{ id: 111, name: "Smartphones" }, { id: 112, name: "Feature Phones" }]
+      },
+      {
+        id: 12,
+        name: "Computers",
+        subchilds: [{ id: 121, name: "Laptops" }, { id: 122, name: "Desktops" }]
+      }
     ]
-  };
+  },
+  {
+    id: 2,
+    name: "Fashion",
+    subcategories: [
+      {
+        id: 21,
+        name: "Men",
+        subchilds: [{ id: 211, name: "Shirts" }, { id: 212, name: "Pants" }]
+      },
+      {
+        id: 22,
+        name: "Women",
+        subchilds: [{ id: 221, name: "Dresses" }, { id: 222, name: "Tops" }]
+      }
+    ]
+  },
+  {
+    id: 3,
+    name: "Home Appliances",
+    subcategories: []
+  },
+  {
+    id: 4,
+    name: "Books",
+    subcategories: []
+  },
+  {
+    id: 5,
+    name: "Groceries",
+    subcategories: []
+  },
+  {
+    id: 6,
+    name: "Home Appliances",
+    subcategories: []
+  },
+  {
+    id: 7,
+    name: "Books",
+    subcategories: []
+  },
+  {
+    id: 8,
+    name: "Groceries",
+    subcategories: []
+  }
+];
 
 export const descriptionText = `What is Lorem Ipsum?
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.

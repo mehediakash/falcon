@@ -109,10 +109,12 @@ const Cart = () => {
 
                 {/* Product Items */}
                 {cartItems.map((item) => (
+                  
                   <div
                     key={item.id}
                     className="flex md:flex-row md:flex-nowrap md:justify-start justify-center flex-wrap items-start gap-4 py-4 px-[32px] "
                   >
+                    {console.log(item)}
                     <CustomCheckbox
                       className="!w-[16px] !h-[16px]"
                       checked={selectedItems.includes(item.id)}
@@ -128,7 +130,7 @@ const Cart = () => {
                         {item.name}
                       </h4>
                       <p className=" text-[#475569] text-base md:text-start text-center mt-2.5 md:mb-[11px]">
-                        Color: {item.color || "no"}; Size: {item.size || "no"}
+                        Color: {item.variation.color || "no"}; Size: {item.variation.size || "no"}
                       </p>
                       <div className="text-right justify-center  flex md:hidden items-center gap-x-2">
                         <p className="text-[#0F172A] font-bold text-[20px] flex items-center">

@@ -28,9 +28,9 @@ import {
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 const SingleProduct = () => {
-  const [realproduct, setRealproduct] = useState(null);
-  const [selectedImageApi, setSelectedImageApi] = useState("");
-  const [selectedVariation, setSelectedVariation] = useState(null);
+ const [realproduct, setRealproduct] = useState(null);
+  const [selectedImageApi, setSelectedImageApi] = useState(fakeProduct.image["1"].url);
+  const [selectedVariation, setSelectedVariation] = useState(fakeProduct.variations[0]);
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [showFullSpecification, setShowFullSpecification] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -39,7 +39,8 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchProduct = async () => {
+  const fetchProduct = async () => {
+    try {
       const res = await axios.get("/product/iphone-15-plus");
       const productData = res.data.data;
       setRealproduct(productData);
@@ -48,13 +49,25 @@ const SingleProduct = () => {
         const firstVariation = productData.variations[0];
         setSelectedVariation(firstVariation);
         setSelectedImageApi(firstVariation.image);
+
+        // Set default color and size from variation attributes if available
+        if (firstVariation.variation_attributes) {
+          setSelectedColor(firstVariation.variation_attributes.color || fakeProduct.colors[0]);
+          setSelectedSize(firstVariation.variation_attributes.size || fakeProduct.sizes[0]);
+        }
       } else {
- 
-        setSelectedImageApi(productData.image["1"]?.url || "");
+        setSelectedImageApi(productData.image["1"]?.url || fakeProduct.image["1"].url);
       }
-    };
-    fetchProduct();
-  }, []);
+    } catch (error) {
+      setRealproduct(null);
+      setSelectedVariation(fakeProduct.variations[0]);
+    }
+  };
+  fetchProduct();
+}, []);
+
+  const productData = realproduct || fakeProduct;
+  const variations = productData.variations || [productData.product_detail];
 
   const handleVariationSelect = (variation) => {
     setSelectedVariation(variation);
@@ -63,28 +76,28 @@ const SingleProduct = () => {
 
   const handleAddToCart = () => {
     if (!selectedVariation) return alert("Please select a variation");
-    dispatch(
-      addToCart({
-        id: selectedVariation.id,
-        name: realproduct.name,
-        image: selectedImageApi,
-        price: selectedVariation.discount_price,
-        quantity,
-        variation: selectedVariation.variation_attributes,
-      })
-    );
+dispatch(
+  addToCart({
+    id: selectedVariation.id,
+    name: productData.name,
+    image: selectedImageApi,
+    price: selectedVariation.discount_price,
+    quantity,
+    variation: {
+      ...selectedVariation.variation_attributes,
+      color: selectedColor,
+      size: selectedSize,
+    },
+  })
+);
     toast.success("Product added to cart successfully!");
   };
 
-  const increaseQuantity = () => {
-    setQuantity((prev) => prev + 1);
+  const increaseQuantity = () => setQuantity((prev) => prev + 1);
+  const decreaseQuantity = () => {
+    if (quantity > 1) setQuantity((prev) => prev - 1);
   };
 
-  const decreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity((prev) => prev - 1);
-    }
-  };
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   return (
@@ -115,7 +128,7 @@ const SingleProduct = () => {
                     autoplay={{ delay: 2000, disableOnInteraction: true }}
                     loop={true}
                   >
-                    {realproduct?.variations.map((v) => (
+                    {variations.map((v) => (
                       <SwiperSlide
                         key={v.id}
                         style={{ width: "68px", height: "64px" }}
@@ -153,7 +166,7 @@ const SingleProduct = () => {
 
             <div className="w-full md:w-[40%]">
               <h1 className="text-2xl font-medium text-[#0F172A]  ">
-                {realproduct?.name}
+                {realproduct?.name || fakeProduct.name}
               </h1>
 
               <div className="flex text-base items-center mt-2 ">

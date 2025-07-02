@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import axios from "./api/axios";
 import Container from "./Container";
 import { PiShoppingCart } from "react-icons/pi";
 import { FaRegUser, FaTimes } from "react-icons/fa";
@@ -13,6 +13,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { selectTotalCartQuantity } from "./redux/cartSlice";
 import { useSelector } from "react-redux";
+import {fakeCategories} from './data/fakeProduct'
+
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -43,18 +45,13 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     axios
-      .get("http://157.230.240.97:9999/api/v1/categories")
-      .then((res) => setCategories(res.data.data || []))
-      .catch((err) => console.error("Category API error:", err));
+      .get("/categories")
+      .then((res) => setCategories(res.data.data || fakeCategories))
+      .catch((err) => {
+        console.error("Category API error:", err);
+        setCategories(fakeCategories);
+      });
   }, []);
 
   const toggleMobileMenu = () => {
@@ -63,7 +60,7 @@ const Navbar = () => {
 
   const handleCategoryClick = () => {
     setShowMegaMenu(!showMegaMenu);
-    setHoveredCategory(null); // reset hover state
+    setHoveredCategory(null);
   };
 
   return (
